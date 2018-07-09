@@ -12,14 +12,14 @@ Provides resources around awscli s3 commands.
 ## Most Recent Release
 
 ```ruby
-cookbook 's3_cli', '~> 1.0.0'
+cookbook 's3_cli', '~> 1.0.1'
 ```
 
 
 ## From Git
 
 ```ruby
-cookbook 's3_cli', github: 'vkhatri/chef-s3-cli',  tag: 'v1.0.0'
+cookbook 's3_cli', github: 'vkhatri/chef-s3-cli',  tag: 'v1.0.1'
 ```
 
 
@@ -34,18 +34,14 @@ https://github.com/vkhatri/chef-s3-cli
 
 - Amazon Linux
 - CentOS
-- Fedora
-- Ubuntu
-- Debian
 
 
 ## Resources
 
 - `s3_install` - install awscli pip module
 
-- `s3_upload` - upload local directory/file path to s3 uri
+- `s3_cp` - copy s3 local data
 
-- `s3_download` - download s3 uri to local directory
 
 ## Resource s3_install
 
@@ -66,6 +62,15 @@ setup_epel_repo
 
 **LWRP example**
 ```ruby
+s3_cp 'copy local file to s3' do
+  s3_source '/tmp/object'
+  s3_destination 's3://BUCKET/object'
+end
+
+s3_cp 'copy s3 to local directory' do
+  s3_source's3://BUCKET/object'
+  s3_destination '/tmp/'
+end
 ```
 
 **LWRP Options**
