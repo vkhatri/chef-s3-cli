@@ -1,0 +1,53 @@
+---
+driver:
+  name: dokken
+  privileged: true
+
+transport:
+  name: dokken
+
+verifier:
+  name: inspec
+
+provisioner:
+  name: dokken
+  attributes:
+    apt:
+      confd:
+        install_recommends: false
+
+platforms:
+  - name: centos7
+    driver:
+      image: centos:7
+      pid_one_command: /usr/lib/systemd/systemd
+      platform: rhel
+      intermediate_instructions:
+        - RUN yum install -y net-tools initscripts systemd-sysv which lsof curl
+
+  - name: amazon
+    driver:
+      image: amazonlinux:2018.03
+      pid_one_command: /sbin/init
+      platform: amazon
+      intermediate_instructions:
+        - RUN yum install -y net-tools initscripts which
+
+suites:
+  - name: chef13
+    driver:
+      chef_version: 13.9.4
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    run_list:
+      - recipe[s3_cli::default]
+
+  - name: chef14
+    driver:
+      chef_version: 14.2.0
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    run_list:
+      - recipe[s3_cli::default]
