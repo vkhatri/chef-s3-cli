@@ -12,14 +12,14 @@ Provides resources around awscli s3 commands.
 ## Most Recent Release
 
 ```ruby
-cookbook 's3_cli', '~> 1.0.1'
+cookbook 's3_cli', '~> 1.0.2'
 ```
 
 
 ## From Git
 
 ```ruby
-cookbook 's3_cli', github: 'vkhatri/chef-s3-cli',  tag: 'v1.0.1'
+cookbook 's3_cli', github: 'vkhatri/chef-s3-cli',  tag: 'v1.0.2'
 ```
 
 
