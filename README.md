@@ -85,6 +85,7 @@ end
 - *s3_cli_options* (optional, String)  - default ``, s3 cmd options
 - *s3_cli_retries* (optional, Integer)  - default `3`, s3 cmd retries
 - *s3_creates* (optional, String)  - default ``, s3 cmd guard to check if file exists
+- *s3_umask* (optional, Integer)  - default ``, s3 cmd umask
 
 
 ## Contributing

@@ -9,6 +9,7 @@ property :s3_cli, [String, NilClass], default: nil
 property :s3_cli_options, String, default: ''
 property :s3_cli_retries, Integer, default: 3
 property :s3_creates, [String, NilClass], default: nil
+property :s3_umask, [Integer, NilClass], default: nil
 
 default_action :cp
 
@@ -26,8 +27,8 @@ action :cp do
       '>= 7' => '/bin/aws'
     },
     'amazon' => {
-      '~> 2017' => '/usr/bin/aws',
-      '~> 2018' => '/usr/bin/aws',
+      '~> 2017' => '/usr/local/bin/aws',
+      '~> 2018' => '/usr/local/bin/aws',
       '~> 2' => '/bin/aws'
     }
   )
@@ -43,5 +44,6 @@ action :cp do
     user new_resource.username if new_resource.username
     group new_resource.groupname if new_resource.groupname
     creates new_resource.s3_creates if new_resource.s3_creates
+    umask new_resource.s3_umask if new_resource.s3_umask
   end
 end
